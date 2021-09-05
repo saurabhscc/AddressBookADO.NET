@@ -237,7 +237,54 @@ namespace AddressBookServices
             {
                 sqlConnection.Close();
             }
-
         }
+        public void Display()
+        {
+            if (addressBook.Count > 0)
+            {
+                Console.WriteLine("  ");
+                foreach (AddressBook contact in addressBook)
+                {
+                    Console.WriteLine("Contact Id: " + contact.ContactId);
+                    Console.WriteLine("FirstName: " + contact.FirstName);
+                    Console.WriteLine("LastName: " + contact.LastName);
+                    Console.WriteLine("Address: " + contact.Address);
+                    Console.WriteLine("City: " + contact.City);
+                    Console.WriteLine("State: " + contact.State);
+                    Console.WriteLine("Zip: " + contact.Zip);
+                    Console.WriteLine("PhoneNumber: " + contact.PhoneNumber);
+                    Console.WriteLine("Email: " + contact.Email);
+                    Console.WriteLine(" ");
+                }
+            }
+            else
+                Console.WriteLine("Data Not Found");
+        }
+
+        public void AlterTableAddColumn()
+        {
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("spAlterTable", sqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                Console.Write("Give FieldName: ");
+                string fieldName = Console.ReadLine();
+                sqlCommand.Parameters.AddWithValue("@FieldName", fieldName);
+
+                int effectedRows = sqlCommand.ExecuteNonQuery();
+                Console.WriteLine("Column Successfully Added ");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+
+
     }
 }
