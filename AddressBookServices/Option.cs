@@ -13,7 +13,7 @@ namespace AddressBookServices
         {
             do
             {
-                Console.Write("1. Insert New Contact\n" + "2. Edit Existing Contact\n" + "3. Delete Contact\n" + "4. Retrieve Contact Belongs To City Or State\n" + "5. Exit\n" );
+                Console.Write("1. Insert New Contact\n" + "2. Edit Existing Contact\n" + "3. Delete Contact\n" + "4. Retrieve Contact Belongs To City Or State\n" + "5.Size Of AddressBook By City\n" + "6. Exit\n" );
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -49,6 +49,9 @@ namespace AddressBookServices
                             Console.WriteLine("Data Not Found");
                         break;
                     case 5:
+                        operations.SizeOfAddressBookByCity();
+                        break;
+                    case 6:
                         Console.WriteLine("Exit");
                         break;
                     default:

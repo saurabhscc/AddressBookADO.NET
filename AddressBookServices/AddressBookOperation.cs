@@ -167,7 +167,32 @@ namespace AddressBookServices
             {
                 sqlConnection.Close();
             }
-
+        }
+        public void SizeOfAddressBookByCity()
+        {
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("spGetSizeOfAddressBookByCity", sqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                Console.Write("Name Of City: ");
+                string city = Console.ReadLine();
+                sqlCommand.Parameters.AddWithValue("@City", city);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    Console.WriteLine("   ");
+                    Console.WriteLine(string.Format("Number Of Contacts Belongs To " + city + ": {0}", reader[0]));
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
     }
 }
