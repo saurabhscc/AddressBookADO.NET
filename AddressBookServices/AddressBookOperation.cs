@@ -61,5 +61,37 @@ namespace AddressBookServices
                 sqlConnection.Close();
             }
         }
+        public void EditExistingContact()
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("spEditExistingContact", this.sqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                Console.Write("FirstName Of Contact For Address To Be Updated : ");
+                string firstName = Console.ReadLine();
+                sqlCommand.Parameters.AddWithValue("@FirstName", firstName);
+                Console.Write("New Address: ");
+                string address = Console.ReadLine();
+                sqlCommand.Parameters.AddWithValue("@Address", address);
+
+                sqlConnection.Open();
+                int effectedRows = sqlCommand.ExecuteNonQuery();
+                if (effectedRows >= 1)
+                {
+                    Console.WriteLine("Successfully Edited ");
+                }
+                else
+                    Console.WriteLine("Error");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+        }
     }
 }
