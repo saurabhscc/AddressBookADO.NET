@@ -194,5 +194,50 @@ namespace AddressBookServices
                 sqlConnection.Close();
             }
         }
+        public List<AddressBook> RetrieveContactBelongsToCitySortedAlphabatically()
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("spRetrieveContactsByCitySortedAlphabatically", sqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                Console.Write("Name Of City: ");
+                string city = Console.ReadLine();
+                sqlCommand.Parameters.AddWithValue("@City", city);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                DataTable dataTable = new DataTable();
+
+                sqlConnection.Open();
+                sqlDataAdapter.Fill(dataTable);
+
+                addressBook.Clear();
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    addressBook.Add(
+                        new AddressBook
+                        {
+                            ContactId = Convert.ToInt32(dataRow["ContactId"]),
+                            FirstName = Convert.ToString(dataRow["FirstName"]),
+                            LastName = Convert.ToString(dataRow["LastName"]),
+                            Address = Convert.ToString(dataRow["Address"]),
+                            City = Convert.ToString(dataRow["City"]),
+                            State = Convert.ToString(dataRow["State"]),
+                            Zip = Convert.ToString(dataRow["Zip"]),
+                            PhoneNumber = Convert.ToString(dataRow["PhoneNumber"]),
+                            Email = Convert.ToString(dataRow["Email"]),
+                        }
+                        );
+                }
+                return addressBook;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+        }
     }
 }
