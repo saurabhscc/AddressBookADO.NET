@@ -13,7 +13,7 @@ namespace AddressBookServices
         {
             do
             {
-                Console.Write("1. Insert New Contact\n" + "2. Edit Existing Contact\n"+"3. Exit\n" );
+                Console.Write("1. Insert New Contact\n" + "2. Edit Existing Contact\n" + "3. Delete Contact\n" + "4. Exit\n" );
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -24,9 +24,11 @@ namespace AddressBookServices
                         operations.EditExistingContact();
                         break;
                     case 3:
+                        operations.DeleteContact();
+                        break;
+                    case 4:
                         Console.WriteLine("Exit");
                         break;
-
                     default:
                         Console.WriteLine("Wrong Input");
                         break;

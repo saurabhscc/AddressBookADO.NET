@@ -91,6 +91,34 @@ namespace AddressBookServices
             {
                 sqlConnection.Close();
             }
+        }
+        public void DeleteContact()
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("spDeleteContact", this.sqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                Console.Write("FirstName Of Contact For Address To Be Deleted:  ");
+                string firstName = Console.ReadLine();
+                sqlCommand.Parameters.AddWithValue("@FirstName", firstName);
+
+                sqlConnection.Open();
+                int effectedRows = sqlCommand.ExecuteNonQuery();
+                if (effectedRows >= 1)
+                {
+                    Console.WriteLine("Successfully Deleted");
+                }
+                else
+                    Console.WriteLine("Error");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
 
         }
     }
