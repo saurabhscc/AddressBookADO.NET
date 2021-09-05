@@ -7,7 +7,7 @@ namespace AddressBookServices
 {
     public class AddressBookOperation
     {
-        //Set Coonection Betn database and c#
+        //Set Connection Betn database and C#
         public static string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AddressBookSystem";
         SqlConnection sqlConnection = new SqlConnection(connectionString);
     }
