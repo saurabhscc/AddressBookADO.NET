@@ -143,3 +143,4 @@ Select Count(FirstName) as 'NumberOfContacts' from Contact
 Join ContactType 
 on Contact.ContactTypeId=ContactType.ContactTypeId                    
 Where ContactTypeName='Friends' Group by ContactTypeName
+
