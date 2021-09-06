@@ -15,5 +15,7 @@ namespace AddressBookServices
         public string Zip { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public string AddressBookName { get; set; }
+        public string AddressBookType { get; set; }
     }
 }
