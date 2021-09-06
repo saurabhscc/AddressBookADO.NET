@@ -10,7 +10,7 @@ Address varchar(100) not null,
 City varchar(50) not null,
 State varchar(200) not null,
 Zip bigint not null ,
-PhoneNumber bigint not null,
+PhoneNumber bigint not null,3
 Email varchar(50)not null
 )
 

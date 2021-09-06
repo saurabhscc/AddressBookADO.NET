@@ -13,7 +13,7 @@ namespace AddressBookServices
         {
             do
             {
-                Console.Write("1. Insert New Contact\n" + "2. Edit Existing Contact\n" + "3. Delete Contact\n" + "4. Retrieve Contact Belongs To City Or State\n" + "5.Size Of AddressBook By City\n" + "6. Retrieve Contacts Belongs To City SortedAlphabatically\n" + "7. Alter Table To Have Type And Name\n" + "8. Exit\n" );
+                Console.Write("1. Insert New Contact\n" + "2. Edit Existing Contact\n" + "3. Delete Contact\n" + "4. Retrieve Contact Belongs To City Or State\n" + "5.Size Of AddressBook By City\n" + "6. Retrieve Contacts Belongs To City SortedAlphabatically\n" + "7. Alter Table To Have Type And Name\n" + "8.Type Count OF AddressBook \n" + "9. Exit\n" );
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -41,8 +41,12 @@ namespace AddressBookServices
                         operations.AlterTableAddColumn();
                         break;
                     case 8:
+                        operations.CountByType();
+                        break;
+                    case 9:
                         Console.WriteLine("Exit");
                         break;
+                    
                     default:
                         Console.WriteLine("Wrong Input");
                         break;
